@@ -1,0 +1,58 @@
+# auto detect text files and perform LF normalization
+* text=auto
+
+# js/ts
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.mjs text eol=lf
+*.cjs text eol=lf
+
+# json/yaml
+*.json text eol=lf
+*.jsonc text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# config
+*.toml text eol=lf
+*.ini text eol=lf
+*.env text eol=lf
+
+# markdown
+*.md text eol=lf
+*.mdx text eol=lf
+
+# css
+*.css text eol=lf
+*.scss text eol=lf
+
+# html
+*.html text eol=lf
+
+# docker
+Dockerfile* text eol=lf
+docker-compose*.yml text eol=lf
+compose*.yaml text eol=lf
+
+# shell scripts
+*.sh text eol=lf
+
+# binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text eol=lf
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+
+# lock files - keep as-is
+bun.lock binary
+package-lock.json binary
+yarn.lock binary
+pnpm-lock.yaml binary

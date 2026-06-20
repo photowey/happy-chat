@@ -1,0 +1,27 @@
+FROM oven/bun:1.3.14-alpine AS base
+
+FROM base AS deps
+WORKDIR /app
+COPY package.json bun.lock* ./
+COPY packages/contracts/package.json ./packages/contracts/
+COPY clients/chat-web/package.json ./clients/chat-web/
+RUN bun install --frozen-lockfile
+
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/packages/contracts/node_modules ./packages/contracts/node_modules
+COPY --from=deps /app/clients/chat-web/node_modules ./clients/chat-web/node_modules
+COPY . .
+RUN bun run build --filter=@autix/chat-web
+
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
+COPY --from=builder /app/clients/chat-web/.next/standalone ./
+COPY --from=builder /app/clients/chat-web/.next/static ./clients/chat-web/.next/static
+COPY --from=builder /app/clients/chat-web/public ./clients/chat-web/public
+USER nextjs
+EXPOSE 3000
+CMD ["node", "clients/chat-web/server.js"]

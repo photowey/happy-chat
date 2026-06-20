@@ -1,0 +1,50 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# build outputs
+dist/
+.next/
+out/
+build/
+*.tsbuildinfo
+
+# turbo
+.turbo/
+
+# env files
+.env
+.env.*
+!.env.example
+
+# os
+.DS_Store
+Thumbs.db
+
+# editor
+*.swp
+*.swo
+*~
+.vscode/settings.json
+.idea/
+
+# debug
+*.log*
+
+# testing
+coverage/
+
+# misc
+*.pem
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+PROMPT.md
+PROMPT.*.md

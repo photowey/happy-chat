@@ -1,0 +1,33 @@
+services:
+  chat-web:
+    build:
+      context: ../..
+      dockerfile: infra/compose/Dockerfile.chat-web
+      target: development
+    ports:
+      - "3002:3000"
+    volumes:
+      - ../../clients/chat-web:/app/clients/chat-web
+      - ../../packages/contracts:/app/packages/contracts
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=http://localhost:4001
+    depends_on:
+      chat:
+        condition: service_healthy
+
+  chat:
+    build:
+      context: ../..
+      dockerfile: infra/compose/Dockerfile.chat
+      target: development
+    ports:
+      - "4001:4001"
+    volumes:
+      - ../../services/chat:/app/services/chat
+      - ../../packages/contracts:/app/packages/contracts
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
