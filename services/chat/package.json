@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nest start --watch",
-    "build": "rm -rf dist tsconfig.tsbuildinfo && nest build",
+    "build": "rm -rf dist tsconfig.tsbuildinfo && nest build && tsc-alias",
     "start": "bun run dist/main.js",
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
@@ -25,6 +25,7 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.0.0",
     "jest": "^30.0.0",
+    "tsc-alias": "^1.8.10",
     "ts-jest": "^29.2.5",
     "typescript": "^5.7.3"
   },
@@ -40,6 +41,7 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "moduleNameMapper": {
+      "^@chat/(.*)\\.js$": "<rootDir>/$1",
       "^@chat/(.*)$": "<rootDir>/$1"
     },
     "collectCoverageFrom": [
