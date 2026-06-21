@@ -48,3 +48,5 @@ next-env.d.ts
 
 PROMPT.md
 PROMPT.*.md
+
+/**/.env
