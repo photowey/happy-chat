@@ -83,4 +83,14 @@ export class LlmController {
   async structured(@Body() body: { input: string }) {
     return this.requirementService.extract(body.input);
   }
+
+  @Post('tool-bind')
+  async toolBind(@Body() body: { input: string }) {
+    return this.llmService.toolBindDemo(body.input);
+  }
+
+  @Post('tool-loop')
+  async toolLoop(@Body() body: { input: string }) {
+    return this.llmService.toolLoopDemo(body.input);
+  }
 }

@@ -9,6 +9,7 @@ import {
   REQUIREMENT_SYSTEM_PROMPT,
   REQUIREMENT_USER_TEMPLATE,
 } from './prompts/requirement.prompt';
+import type { SerializableSchema } from '@langchain/core/utils/types';
 
 @Injectable()
 export class RequirementService {
@@ -22,8 +23,7 @@ export class RequirementService {
   async extract(input: string): Promise<RequirementResult> {
     const messages = await this.prompt.formatMessages({ input });
     const structuredModel = this.model.withStructuredOutput(
-      RequirementResultSchema,
-      { method: 'functionCalling' },
+      RequirementResultSchema as unknown as SerializableSchema<RequirementResult>,
     );
     return structuredModel.invoke(messages);
   }

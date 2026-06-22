@@ -4,9 +4,14 @@ export const REQUIREMENT_SYSTEM_PROMPT = `
 你的任务是：
 从输入文本中提取结构化字段，并以 JSON 格式输出。
 
+输出字段格式：
+- action: string，唯一核心动作，用"动词+对象"概括，如"绑定手机号"
+- constraints: string[]，明确约束条件列表
+- entities: string[]，关键实体列表
+
 严格要求：
 1. 不允许编造信息
-2. action 必须是唯一核心动作（动词+对象）
+2. action 必须是单个字符串，不是数组
 3. constraints 只保留明确约束（必须 / 至少 / 不得 / 不能）
 4. entities 只提取文本中真实出现的名词
 5. 如果不存在某字段，返回空数组

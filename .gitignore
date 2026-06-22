@@ -50,3 +50,6 @@ PROMPT.md
 PROMPT.*.md
 
 /**/.env
+
+.gitnexus/
+.claude/skills/gitnexus/
