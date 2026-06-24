@@ -2,6 +2,11 @@ import 'dotenv/config';
 import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '@chat/app.module';
+import { ProxyAgent, setGlobalDispatcher } from 'undici';
+
+if (process.env.GLOBAL_AGENT_HTTP_PROXY) {
+  setGlobalDispatcher(new ProxyAgent(process.env.GLOBAL_AGENT_HTTP_PROXY));
+}
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

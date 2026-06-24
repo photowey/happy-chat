@@ -53,3 +53,6 @@ PROMPT.*.md
 
 .gitnexus/
 .claude/skills/gitnexus/
+
+# workspace
+services/chat/workspace/

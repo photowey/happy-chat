@@ -1,9 +1,4 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Res,
-} from '@nestjs/common';
+import { Controller, Post, Body, Res } from '@nestjs/common';
 import type { Response } from 'express';
 import { LlmService } from './llm.service';
 import { RequirementService } from './requirement.service';
